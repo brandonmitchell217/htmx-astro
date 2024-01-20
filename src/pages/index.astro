@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import Counter from "./partials/Counter.astro";
+import { Icon } from "astro-icon/components";
+
+let isSubmitted = false;
+if (Astro.request.method === "POST") {
+  isSubmitted = true;
+}
+
+interface Card {
+  title: string;
+  body: string;
+  href: string;
+}
+
+const cards: Card[] = [
+  {
+    title: "Astro",
+    body: "Build faster websites with less client-side Javascript.",
+    href: "https://astro.build",
+  },
+  {
+    title: "Snowpack",
+    body: "The faster frontend build tool.",
+    href: "https://snowpack.dev",
+  },
+  {
+    title: "Skypack",
+    body: "The world's first CDN for modern JavaScript.",
+    href: "https://skypack.dev",
+  },
+  {
+    title: "Pika",
+    body: "The development studio behind Astro.",
+    href: "https://www.pika.dev",
+  },
+];
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <div class="container">
+      <div class="flex justify-center items-center gap-8">
+        <div>
+          <!-- <form hx-post="" hx-swap="innerHTML" hx-select="form">
+          {isSubmitted && <p class="text-xl">Submitted</p>}
+          <button type="submit" class="bg-red-600 py-1 px-6 rounded-2xl"
+            >Submit</button
+          >
+        </form> -->
+          <h1>Title here</h1>
+          <Icon name="mdi:home" />
+          <Icon name="lucide:facebook" />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti
+            provident laudantium quae! Labore quidem animi maxime iure id, odio
+            nostrum deserunt repellat maiores facere?
+          </p>
+        </div>
+        <div class="grid grid-cols-4 gap-4">
+          {cards.map((card: Card) => <Card {...card} />)}
+        </div>
+      </div>
+
+      <div>
+        <Counter />
+      </div>
+    </div>
+  </main>
+</Layout>
